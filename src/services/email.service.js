@@ -42,7 +42,6 @@ const updateTicket = async (ticketId, data) => {
 
 const createNotification = async (data) => {
 
-    console.log('called..notification');
     try {
         console.log(data);
         const response = await repo.create(data);

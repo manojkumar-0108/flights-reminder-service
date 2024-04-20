@@ -1,6 +1,6 @@
 const express = require("express");
 const { CRON } = require('./utils/helpers/');
-const { ServerConfig } = require("./config");
+const { ServerConfig, MessageQueue } = require("./config");
 const { IdentityReset } = require("./utils/helpers/");
 const { sequelize } = require('./models');
 
@@ -28,7 +28,7 @@ app.use('/api/tickets', apiRoutes);
 // last middleware for handling errors
 app.use(errorHandler);
 
-app.listen(ServerConfig.PORT, () => {
+app.listen(ServerConfig.PORT, async () => {
     console.log(`Started server at PORT: ${ServerConfig.PORT}`);
 
     /**
@@ -47,4 +47,14 @@ app.listen(ServerConfig.PORT, () => {
         });
 
     CRON();
+
+    /**
+     *  connecting message queue
+     */
+
+    await MessageQueue.connectQueue();
+    console.log("Queue Connected Successfully");
+
+    await MessageQueue.consumeData();
+
 })

@@ -6,7 +6,13 @@ const { SuccessResponse } = require('../utils/common/');
 const create = async (req, res, next) => {
 
     try {
-        const response = await EmailService.createNotification(req.body);
+        const response = await EmailService.createNotification({
+            subject: req.body.subject,
+            content: req.body.content,
+            recepientEmail: req.body.recepientEmail,
+            notificationTime: req.body.notificationTime,
+            status: req.body.status
+        });
 
         SuccessResponse.data = response;
         SuccessResponse.statusCode = StatusCodes.CREATED;

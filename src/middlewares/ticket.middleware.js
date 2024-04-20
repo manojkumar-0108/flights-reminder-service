@@ -6,7 +6,11 @@ const { Enums } = require('../utils/common');
 
 function validateCreateNotification(req, res, next) {
 
-    if (!req.body.subject || !req.body.content || !req.body.recepientEmail || !req.body.notificationTime) {
+    if (!req.body.notificationTime) {
+        req.body.notificationTime = new Date();
+    }
+
+    if (!req.body.subject || !req.body.content || !req.body.recepientEmail) {
         let details = new Array();
 
         if (!req.body.subject) {
@@ -19,10 +23,6 @@ function validateCreateNotification(req, res, next) {
 
         if (!req.body.recepientEmail) {
             details.push("recepientEmail is not found in incomming request in correct form")
-        }
-
-        if (!req.body.notificationTime) {
-            details.push("notificationTime is not found in incomming request in correct form")
         }
 
         throw new AppError(StatusCodes.BAD_REQUEST, "Please enter valid details", details);
