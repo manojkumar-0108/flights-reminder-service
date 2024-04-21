@@ -134,11 +134,6 @@ The `src` folder houses all the actual source code of the project, excluding any
 
 ## 📦 Packages and Their Usage
 
-    "amqplib": "^0.10.4",
-    "axios": "^1.6.8",
-    "node-cron": "^3.0.3",
-    "nodemailer": "^6.9.13",
-
 - **`amqplib`** 📬 : This package is a client for working with RabbitMQ, a popular message broker. It enables you to establish connections to RabbitMQ servers, manage message queues, publish messages, and consume messages from queues. It's essential for implementing asynchronous messaging and communication between different parts of your application.
 
 - **`axios`** 🌐: A popular HTTP client for making requests to RESTful APIs and other web services. It provides a simple interface for sending GET, POST, PUT, DELETE, and other HTTP requests. With its promise-based syntax, axios makes it easy to handle asynchronous operations and manage responses.
